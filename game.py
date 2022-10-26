@@ -7,6 +7,7 @@ from player import Player
 class Game():
     def __init__(self):
         self.human = Human()
+        self.human_two = Human()
         self.ai = AI()
         self.goes_first = ''
 
@@ -73,9 +74,9 @@ class Game():
         while self.human.choice <=2 and self.ai.choice <=1:
             if self.goes_first == "PLAYER ONE":
                 self.human.choose_gesture(self.human)
-                self.human.choose_gesture(self.human) or self.ai.choose_gesture(self.ai) 
+                self.human_two.choose_gesture(self.human_two) or self.ai.choose_gesture(self.ai) 
             elif self.goes_first == "PLAYER TWO" or "AI":
-                self.ai.choose_gesture(self.ai) or self.human.choose_gesture(self.human)
+                self.ai.choose_gesture(self.ai) or self.human_two.choose_gesture(self.human_two)
                 self.human.choose_gesture(self.human)
 
     def display_winner(self):
