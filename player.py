@@ -6,4 +6,6 @@ class Player():
         self.name = name
 
     def choose_gesture(self):
-        pass
+        while self.score < 3:
+            gesture_list = ["Rock", "Paper", "Scissors", "Lizard", "Spock"]
+

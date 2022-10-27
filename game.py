@@ -6,17 +6,15 @@ from player import Player
 
 class Game():
     def __init__(self):
-        self.human = Human()
-        self.human_two = Human()
-        self.ai = AI()
-        self.goes_first = ''
+        self.player1 = None
+        self.player2 = None
 
     def run_game(self):
         self.display_welcome()
-        self.human = self.choose_number_of_players()
-        self.ai = self.choose_ai_player()
+        self.choose_player()
         self.play()
         self.current_turn()
+        self.compare_gestures()
         self.display_winner()
         self.display_farewell()
 
@@ -37,29 +35,19 @@ class Game():
         print('Rock crushes Scissors')
         print()
 
-    def choose_number_of_players(self):
-        choose_number_of_players = int(input(f"Choose number of players: (0){self.human.players[0].name}, (1){self.human.players[1].name}"))
-        if choose_number_of_players == 0:
-            print('You chose ONE PLAYER')
-            return self.human.players[0]
-        elif choose_number_of_players == 1:
-            print('You chose TWO PLAYER')
-            return self.human.players[1]
+    def choose_player(self):
+        answer = input("How many players")
+        if answer == "1":
+            self.player1 = Human("Steve")
+            self.player2 = AI("Bot")
+        elif answer == "2":
+            self.player1 = Human("Steve")
+            self.player2 = Human("Jude")
         else:
-            print('Oops! Try again.')
-            self.choose_number_of_players()
+            self.player1 = AI("Bot")
+            self.player2 = AI("Wilbur")
 
-    def choose_ai_player(self):
-        choose_ai_player = (input(f"Would you like to play aganist our AI player?"))
-        if choose_ai_player == 'YES':
-            print('You are up aganist AI')
-            return
-        elif choose_ai_player == 'NO':
-            print('Please choose number of players or try again.')
-            self.choose_number_of_players()
-        else:
-            print('Oops! Try again.')
-            self.choose_ai_player()
+        self.goes_first = ''
 
     def play(self):
         first_turn = random.randint(1, 2)
@@ -71,12 +59,19 @@ class Game():
             self.goes_first = "PLAYER TWO" or "AI"
 
     def current_turn(self):
-        while self.human.choice <=2 and self.ai.choice <=1:
+        while self.player1.score < 2 and self.player2.score < 2:
             if self.goes_first == "PLAYER ONE":
-                self.human.choose_gesture(self.human)
-                self.human_two.choose_gesture(self.human_two) or self.ai.choose_gesture(self.ai) 
-            elif self.goes_first == "PLAYER TWO" or "AI":
-                self.ai.choose_gesture(self.ai) or self.human_two.choose_gesture(self.human_two)
-                self.human.choose_gesture(self.human)
+                self.player1.choose_gesture()
+                self.player2.choose_gesture()
+            elif self.goes_first == "PLAYER TWO" or self.goes_first == "AI":
+                self.player2.choose_gesture()
+                self.player1.choose_gesture()
+    
+    def compare_gestures(self):
+
 
     def display_winner(self):
+        pass
+
+    def display_farewell(self):
+        pass
