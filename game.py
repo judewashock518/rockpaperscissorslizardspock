@@ -14,7 +14,6 @@ class Game():
         self.display_welcome()
         self.choose_player()
         self.current_turn()
-        self.compare_gestures()
         self.display_winner()
 
 
@@ -56,7 +55,7 @@ class Game():
     def compare_gestures(self):
         if self.player1.chosen_gesture == self.player2.chosen_gesture:
                     print("It's a tie! Both players picked the same gesture. Keep playing.")
-                    self.player1.score == 0 and self.player2.score == 0
+                    self.player1.score == 1 and self.player2.score == 1
         elif self.player1.chosen_gesture == "Rock" and (self.player2.chosen_gesture == "Scissors" or self.player2.chosen_gesture == "Lizard"):
                     print(f'{self.player1.name} has won this round!')
                     self.player1.score += 1
