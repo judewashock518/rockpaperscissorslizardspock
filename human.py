@@ -11,4 +11,4 @@ class Human(Player):
             print(gesture)
         user_input = int(input("Select your move: 0-4"))
         self.chosen_gesture = self.gesture_list[user_input]
-        print(self.chosen_gesture)
+        print(f"{self.name} has chosen {self.chosen_gesture}")
