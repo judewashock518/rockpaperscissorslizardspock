@@ -95,12 +95,17 @@ class Game():
                 return self.run_game()
             elif user_input == 'No':
                 self.display_farewell()
+            else: 
+                self.display_farewell()
+
         elif self.player2.score >=2:
             print (f'{self.player2.name} beat {self.player1.name}!')
             user_input = (input("Would you like to play again? "))
             if user_input == 'Yes':
                 return self.run_game()
             elif user_input == 'No':
+                self.display_farewell()
+            else:
                 self.display_farewell()
 
     def display_farewell(self):
